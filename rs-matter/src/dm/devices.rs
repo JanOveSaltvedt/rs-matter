@@ -146,6 +146,21 @@ pub const DEV_TYPE_EXTENDED_COLOR_LIGHT: DeviceType = DeviceType {
     drev: 4,
 };
 
+/// Thermostat (`0x0301`), Matter Device Library revision 6.
+///
+/// Mandates `Identify` and `Thermostat` as servers, plus `Groups` when the
+/// device supports group communication. Revision history: rev 4 dropped Time
+/// Synchronization, Scenes Management and the Zigbee-only clusters; rev 5 moved
+/// the disallowed-element conformance into the Thermostat cluster itself; rev 6
+/// added Ambient Context Sensing as an optional client.
+///
+/// See [`crate::dm::clusters::app::thermostat`] for the heating-only cluster
+/// handler that backs it.
+pub const DEV_TYPE_THERMOSTAT: DeviceType = DeviceType {
+    dtype: 0x0301,
+    drev: 6,
+};
+
 /// A constant representing the Smart Speaker device in Matter.
 pub const DEV_TYPE_SMART_SPEAKER: DeviceType = DeviceType {
     dtype: 0x0022,

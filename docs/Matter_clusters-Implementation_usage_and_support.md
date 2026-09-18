@@ -400,7 +400,7 @@ Blank entries indicate that an assessment has not yet been made to identify if t
 |                                                       |    |    |    |    |    |       |
 | **4. HVAC**                                           |    |    |    |    |    |       |
 | PumpConfigurationAndControl                           | ✅ |    |    |    |    |       |
-| Thermostat                                            | ✅ |    |    |    |    |       |
+| Thermostat                                            | ✅ | ⚫ | ✅ | ⚫ |    | heating-only (`HEAT`); schedules, presets, suggestions and cooling are not implemented |
 | FanControl                                            | ✅ | ⚫ | ❌ | ⚫ |    |       |
 | ThermostatUserInterfaceConfiguration                  | ✅ |    |    |    |    |       |
 |                                                       |    |    |    |    |    |       |

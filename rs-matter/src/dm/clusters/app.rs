@@ -20,6 +20,7 @@
 //!
 //! This currently includes:
 //! - `OnOff` and `LevelControl` — for demoing purposes.
+//! - `Thermostat` — a heating-only implementation of the HVAC cluster.
 //! - The Matter 1.5 camera / streaming clusters
 //!   (`CameraAvStreamManagement`, `CameraAvSettingsUserLevelManagement`,
 //!   `WebRTCTransportProvider`, `WebRTCTransportRequestor`,
@@ -34,6 +35,7 @@ pub mod color_control;
 pub mod level_control;
 pub mod on_off;
 pub mod push_av_stream;
+pub mod thermostat;
 pub mod webrtc_prov;
 pub mod webrtc_req;
 pub mod zone_mgmt;
