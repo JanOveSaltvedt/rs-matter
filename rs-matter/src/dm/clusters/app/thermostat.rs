@@ -494,6 +494,13 @@ impl<H: ThermostatHooks> ThermostatHandler<H> {
             panic!("Thermostat validation: the AbsMin/AbsMax/Min/MaxHeatSetpointLimit attributes must either all be present or all be absent");
         }
 
+        // Every event this cluster defines is gated on `TEVT` (and provisional
+        // in 1.6 besides), and the feature check above has already rejected it.
+        // A served event would be advertised in `EventList` and never emitted.
+        if H::CLUSTER.events().next().is_some() {
+            panic!("Thermostat validation: no event can be served without the TEVT feature - pass `.with_events(with!())`");
+        }
+
         if H::CLUSTER
             .command(CommandId::SetpointRaiseLower as _)
             .is_none()
@@ -1055,7 +1062,8 @@ pub mod test {
                     | thermostat_cluster::AttributeId::MinHeatSetpointLimit
                     | thermostat_cluster::AttributeId::MaxHeatSetpointLimit
             ))
-            .with_cmds(with!(thermostat_cluster::CommandId::SetpointRaiseLower));
+            .with_cmds(with!(thermostat_cluster::CommandId::SetpointRaiseLower))
+            .with_events(with!());
 
         fn local_temperature(&self) -> Nullable<i16> {
             Nullable::some(self.local_temperature.get())
@@ -1189,7 +1197,8 @@ mod tests {
                     | thermostat_cluster::AttributeId::MinHeatSetpointLimit
                     | thermostat_cluster::AttributeId::MaxHeatSetpointLimit
             ))
-            .with_cmds(with!(thermostat_cluster::CommandId::SetpointRaiseLower));
+            .with_cmds(with!(thermostat_cluster::CommandId::SetpointRaiseLower))
+            .with_events(with!());
 
         fn local_temperature(&self) -> Nullable<i16> {
             Nullable::new(self.local_temperature.get())

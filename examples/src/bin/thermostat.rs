@@ -394,7 +394,8 @@ impl ThermostatHooks for ThermostatDeviceLogic {
                 | thermostat_cluster::AttributeId::MinHeatSetpointLimit
                 | thermostat_cluster::AttributeId::MaxHeatSetpointLimit
         ))
-        .with_cmds(with!(thermostat_cluster::CommandId::SetpointRaiseLower));
+        .with_cmds(with!(thermostat_cluster::CommandId::SetpointRaiseLower))
+        .with_events(with!());
 
     const CONTROL_SEQUENCE_OF_OPERATION: ControlSequenceOfOperationEnum =
         ControlSequenceOfOperationEnum::HeatingOnly;
